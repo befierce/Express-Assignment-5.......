@@ -1,23 +1,16 @@
 const express = require('express');
+const productsController = require('../controllers/products');
+const contactusController = require('../controllers/constactus');
+const sucessController = require('../controllers/constactus');
+
+
 const router = express.Router();
 const path = require('path');
 
-router.get('/add-product', (req, res, next) => {
-    // Corrected path to the HTML file
-    res.sendFile(path.join(__dirname,'../','views','add-product.html'));
-});
-
-router.post('/add-product', (req, res, next) => {
-    console.log(req.body);
-    res.redirect('/');
-});
-router.get('/contactus', (req, res, next) => {
-    // Corrected path to the HTML file
-    res.sendFile(path.join(__dirname,'../','views','contact-us.html'));
-});
-router.post('/success', (req, res, next) => {
-    // Corrected path to the HTML file
-    res.sendFile(path.join(__dirname,'../','views','success.html'));
-});
+//imorting from controller
+router.get('/add-product', productsController.getAddProduct);
+router.post('/add-product', productsController.postAddProduct);
+router.get('/contactus',contactusController.contactus);
+router.post('/success',sucessController.success);
 
 module.exports = router;
